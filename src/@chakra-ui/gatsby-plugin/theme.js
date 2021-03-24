@@ -11,7 +11,7 @@ const theme = extendTheme({
     }
   },
   fonts: {
-    heading: "Trocchi"
+    heading: "Marck Script"
   },
   components: {
     Container: {

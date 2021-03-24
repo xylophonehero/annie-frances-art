@@ -1,7 +1,8 @@
 import React from "react";
-import { Link, Box, Flex, Text, Stack, Collapse, useDisclosure } from "@chakra-ui/react";
+import { Link, Box, Flex, Text, Stack, Collapse, useDisclosure, Heading } from "@chakra-ui/react";
 import { Link as GatsbyLink } from 'gatsby'
-import Logo from '../../static/logo.svg'
+import Cart from './Cart'
+
 
 const NavBar = (props) =>
 {
@@ -13,7 +14,7 @@ const NavBar = (props) =>
         to="/"
       >
         <Box w={["200px", "300px", "200px", "300px"]}>
-          <img src={Logo} alt="logo" width="300px" />
+          <Heading>Annie Frances Art</Heading>
         </Box>
       </GatsbyLink>
 
@@ -97,9 +98,10 @@ const MenuLinks = () =>
     >
       <MenuItem to="/about">About</MenuItem>
       <MenuItem to="/services">Services</MenuItem>
-      <MenuItem to="/portfolio">Portfolio</MenuItem>
+      <MenuItem to="/paintings">Paitings</MenuItem>
       <MenuItem to="/testimonials">Testimonails</MenuItem>
       <MenuItem to="/contact">Contact</MenuItem>
+      <Cart />
       {/* <MenuItem to="/signup" isLast>
             <Button
               size="sm"
@@ -127,7 +129,7 @@ const NavBarContainer = ({ children, ...props }) =>
       justify="space-between"
       wrap="wrap"
       w="100%"
-      pos="fixed"
+      pos="sticky"
       top="0"
       zIndex="2"
       // zIndex="sticky"
