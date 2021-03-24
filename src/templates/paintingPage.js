@@ -1,10 +1,11 @@
-import { Box, Heading, HStack, Stack, VStack, Text, Button } from '@chakra-ui/react';
+import { Box, Heading, HStack, Stack, VStack, Text, } from '@chakra-ui/react';
 import { graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import React, { useState } from 'react';
 import PageLayout from '../components/PageLayout';
 import Content from '../components/Content'
 import { FormatPrice } from '../utils/Format';
+import StripeBuyButton from '../components/StripeBuyButton';
 
 
 function PaintingPage({ data })
@@ -32,7 +33,7 @@ function PaintingPage({ data })
           <Heading>{paintingInfo.name}</Heading>
           <Text>{FormatPrice(paintingInfo.price, 'AUD')}</Text>
           <Content text={paintingInfo.description} />
-          <Button>Buy now</Button>
+          <StripeBuyButton paintingId={paintingInfo.id} />
         </VStack>
       </Stack>
     </PageLayout>

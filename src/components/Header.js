@@ -97,7 +97,7 @@ const MenuLinks = () =>
       pt={[4, 4, 0, 0]}
     >
       <MenuItem to="/about">About</MenuItem>
-      <MenuItem to="/services">Services</MenuItem>
+      <MenuItem to="/faqs">FAQs</MenuItem>
       <MenuItem to="/paintings">Paitings</MenuItem>
       <MenuItem to="/testimonials">Testimonails</MenuItem>
       <MenuItem to="/contact">Contact</MenuItem>
@@ -135,7 +135,7 @@ const NavBarContainer = ({ children, ...props }) =>
       // zIndex="sticky"
       // mb={8}
       p={4}
-      bgGradient="linear(to-r, teal.200, teal.400)"
+      bgGradient="linear(to-r, gray.200, gray.400)"
       color="gray.600"
       {...props}
     >
