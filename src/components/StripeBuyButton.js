@@ -10,7 +10,7 @@ function StripeBuyButton({ paintingId })
   const handleBuy = async (e) =>
   {
     e.preventDefault()
-    const response = await fetch('/api/create-checkout', {
+    const response = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
