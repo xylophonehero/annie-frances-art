@@ -63,7 +63,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) =>
 {
   return (
     <Link href={to}>
-      <Text display="block" fontFamily="heading" textTransform="uppercase" color="gray.700" {...rest}>
+      <Text display="block" textTransform="uppercase" color="gray.700" {...rest}>
         {children}
       </Text>
     </Link>

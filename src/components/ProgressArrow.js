@@ -20,7 +20,7 @@ function ProgressArrow()
       borderRadius="full"
       zIndex="overlay"
       onClick={() => animateScroll.scrollToTop({ duration: "500" })}
-      color="teal"
+      color="gray.500"
       p="0"
       bgColor="transparent"
       boxShadow="inset 0 0 0 2px rgba(0, 0, 0, 0.2)"
@@ -40,7 +40,7 @@ function ProgressArrow()
             boxSizing: "border-box",
             fill: 'none',
             strokeDasharray: "307.919, 307.919",
-            stroke: "teal"
+            stroke: "gray"
           }}
         ></path>
       </svg>

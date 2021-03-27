@@ -8,7 +8,7 @@ export default function Home({ data })
 {
   return (
     <div>
-      Hello
+      Coming soon!
       {/* <Hero {...data.contentfulHero} /> */}
     </div>
   )

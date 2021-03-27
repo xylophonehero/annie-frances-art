@@ -29,7 +29,7 @@ function FAQs({ faqs })
             </AccordionButton>
 
             <AccordionPanel p={4}>
-              <Content text={faq.answer} />
+              <Content as="div" text={faq.answer} />
             </AccordionPanel>
           </AccordionItem>
         ))}
