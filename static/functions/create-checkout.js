@@ -12,8 +12,7 @@ exports.handler = async ({ body }) =>
   })
 
   const painting = await client.getEntry(id)
-  // const imageUrl = await client.get
-  console.log(painting.fields.images[0].fields.file)
+
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
