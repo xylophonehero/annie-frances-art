@@ -35,8 +35,8 @@ exports.handler = async ({ body }) =>
       },
     ],
     mode: 'payment',
-    success_url: 'http://localhost:8888',
-    cancel_url: 'http://localhost:8888/paintings',
+    success_url: 'https://annie-frances-art.netlify.app/purchased',
+    cancel_url: 'https://annie-frances-art.netlify.app/paintings',
   })
 
   return {

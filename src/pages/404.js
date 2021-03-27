@@ -4,7 +4,7 @@ function NotFound(props)
 {
   return (
     <div>
-      Whoops... go back and try again!
+      Whoops... Page not found!
     </div>
   );
 }
