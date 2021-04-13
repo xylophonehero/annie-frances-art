@@ -17,7 +17,7 @@ function FAQs({ faqs })
   return (
     <Box p="16" w="100%">
       {/* <Heading textAlign="center" mb="8">FAQs</Heading> */}
-      <Accordion w="full" maxW="72em">
+      <Accordion w="full" maxW="72em" allowToggle>
         {faqs.map((faq) => (
           <AccordionItem key={faq.id} mb="4" boxShadow="lg" borderRadius="xl" overflow="hidden">
 

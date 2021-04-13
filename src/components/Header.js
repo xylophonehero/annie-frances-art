@@ -1,6 +1,6 @@
 import React from "react";
-import { Link, Box, Flex, Text, Stack, Collapse, useDisclosure, Heading } from "@chakra-ui/react";
-import { Link as GatsbyLink } from 'gatsby'
+import { Box, Flex, Text, Stack, Collapse, useDisclosure, Heading } from "@chakra-ui/react";
+import { Link } from 'gatsby'
 import Cart from './Cart'
 
 
@@ -10,13 +10,13 @@ const NavBar = (props) =>
 
   return (
     <NavBarContainer {...props}>
-      <GatsbyLink
+      <Link
         to="/"
       >
         <Box w={["200px", "300px", "200px", "300px"]}>
           <Heading>Annie Frances Art</Heading>
         </Box>
-      </GatsbyLink>
+      </Link>
 
       <MenuToggle toggle={onToggle} isOpen={isOpen} />
       <Box display={{ base: "none", md: "block" }}>
@@ -62,11 +62,30 @@ const MenuToggle = ({ toggle, isOpen }) =>
 const MenuItem = ({ children, isLast, to = "/", ...rest }) =>
 {
   return (
-    <Link href={to}>
-      <Text display="block" textTransform="uppercase" color="gray.700" {...rest}>
+    <Box as={Link} to={to} className="navbar-link" pos="relative">
+      <Text
+        display="block"
+        textTransform="uppercase"
+        color="gray.700"
+        fontWeight="semibold"
+        {...rest}
+      >
         {children}
       </Text>
-    </Link>
+      <Box
+        pos="absolute"
+        h="2px"
+        bgColor="gray.700"
+        w="0"
+        transition="width 0.3s ease"
+
+        sx={{
+          ".navbar-link:hover &": {
+            width: "100%",
+          },
+        }}
+      />
+    </Box>
   );
 };
 
@@ -97,6 +116,7 @@ const MenuLinks = () =>
       pt={[4, 4, 0, 0]}
     >
       <MenuItem to="/about">About</MenuItem>
+      <MenuItem to="/my-mission">My Mission</MenuItem>
       <MenuItem to="/faqs">FAQs</MenuItem>
       <MenuItem to="/paintings">Paitings</MenuItem>
       <MenuItem to="/testimonials">Testimonails</MenuItem>

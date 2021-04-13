@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import ProgressArrow from './ProgressArrow';
 import { motion, AnimatePresence } from 'framer-motion';
+import SocialButtons from './SocialButtons';
 
 
 function Layout({ children, location })
@@ -48,6 +49,7 @@ function Layout({ children, location })
         </AnimatePresence>
       </Box>
       <Footer />
+      <SocialButtons />
       <ProgressArrow />
     </Flex>
   );

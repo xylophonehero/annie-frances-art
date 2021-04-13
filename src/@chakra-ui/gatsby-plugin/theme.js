@@ -11,7 +11,7 @@ const theme = extendTheme({
     }
   },
   fonts: {
-    heading: "Marck Script"
+    heading: "Bad Script"
   },
   components: {
     Container: {
@@ -38,11 +38,11 @@ const theme = extendTheme({
       },
       ".content": {
         h2: {
-          fontSize: "xl",
+          fontSize: "4xl",
           mb: "4",
           fontWeight: "semibold"
         },
-        "p:not(:last-child)": {
+        "p": {
           mb: "4"
         },
         a: {
