@@ -178,11 +178,6 @@ export const query = graphql`query SinglePaintingPage($name: String) {
   contentfulPainting(name:{eq: $name}){
     id: contentful_id
     name
-    description{
-      childMarkdownRemark {
-        html
-      }
-    }
     text {
       raw
     }

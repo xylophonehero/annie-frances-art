@@ -39,11 +39,6 @@ export const query = graphql`query BasicPage($title: String) {
   contentfulPage(title:{eq: $title}){
     id: contentful_id
     title
-    body{
-      childMarkdownRemark{
-        html
-      }
-    }
     text {
       raw
       references {

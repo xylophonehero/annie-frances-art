@@ -73,11 +73,6 @@ export const paintingsQuery = graphql`query AllPaintings {
     nodes {
       id: contentful_id
       name
-      description {
-        childMarkdownRemark {
-          html
-        }
-      }
       images {
         gatsbyImageData(placeholder: BLURRED)
         file {

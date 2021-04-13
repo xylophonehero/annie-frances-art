@@ -27,10 +27,8 @@ export const query = graphql`
         id
         buyer
         location
-        review{
-          childMarkdownRemark{
-            html
-          }
+        testimonial {
+          raw
         }
         photo {
           gatsbyImageData
