@@ -1,22 +1,54 @@
-import { Box, Heading, HStack, Stack, VStack, Text, Breadcrumb, BreadcrumbItem, BreadcrumbLink, IconButton, SimpleGrid, useDisclosure } from '@chakra-ui/react';
+import
+{
+  Box,
+  Button,
+  Heading,
+  HStack,
+  Stack,
+  VStack,
+  Text,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  IconButton,
+  SimpleGrid,
+  useDisclosure,
+  Select,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  FormLabel
+} from '@chakra-ui/react';
 import { graphql } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PageLayout from '../components/PageLayout';
 // import Content from '../components/Content'
 import { FormatPrice } from '../utils/Format';
-import StripeBuyButton from '../components/StripeBuyButton';
-import { FaChevronLeft, FaChevronRight, FaFacebookF } from 'react-icons/fa';
+// import StripeBuyButton from '../components/StripeBuyButton';
+import { FaChevronLeft, FaChevronRight, FaFacebookF, FaPaw } from 'react-icons/fa';
 import PaintingCard from '../components/PaintingCard';
 import PaintingModal from '../components/PaintingModal';
 import { AnimatePresence, motion } from 'framer-motion';
 
+// import SEO from '../components/SEO';
+
+import CartContext from '../context/cartContext'
+
 
 function PaintingPage({ data })
 {
+  const paintingInfo = data.contentfulPainting
+
   const [imageIndex, setImageIndex] = useState(0)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [sizeIndex, setSizeIndex] = useState(0)
+  const [quantity, setQuantity] = useState(1)
+
+  const { addToCart } = useContext(CartContext)
 
   const duration = 0.3
   const variants = {
@@ -37,9 +69,13 @@ function PaintingPage({ data })
     },
   }
 
-  const paintingInfo = data.contentfulPainting
+
   return (
     <PageLayout pageTitle={paintingInfo.name}>
+      {/* <SEO
+        title={paintingInfo.name}
+        image={paintingInfo.images[0].file.url}
+      /> */}
       <PaintingModal {...paintingInfo} isOpen={isOpen} onClose={onClose} index={imageIndex} />
       <Stack direction={["column", null, "row"]} spacing="8">
         <VStack
@@ -90,33 +126,6 @@ function PaintingPage({ data })
               />
             </Box>
           </AnimatePresence>
-          {/* <Box bgColor="red" w="full" h="200px" pos="relative" overflow="hidden">
-              {paintingInfo.images.map((image, index) => (
-                // <Box
-                //   key={image.id}
-                //   p={4}
-                //   boxShadow="xl"
-                //   w="full"
-                //   h="full"
-                //   objectFit="contain"
-                //   pos="relative"
-                //   overflow="hidden"
-                // >
-                <Box
-                  key={image.id}
-                  as={GatsbyImage}
-                  image={getImage(image)}
-                  opacity={index === imageIndex ? 1 : 0}
-                  transition="opacity 500ms ease"
-                  pos="absolute"
-                  // w="full"
-                  // h="full"
-                  imgStyle={{ objectFit: "cover" }}
-                  alt={paintingInfo.name} />
-
-              ))}
-            </Box> */}
-
           <HStack
             borderBottom="1px"
             w="full"
@@ -152,12 +161,29 @@ function PaintingPage({ data })
         </VStack>
         <Box className="content" flexShrink="1">
           <Heading>{paintingInfo.name}</Heading>
-          <Text fontWeight="semibold" fontSize="2xl">{FormatPrice(paintingInfo.price, 'AUD')}</Text>
           <Box>{renderRichText(paintingInfo.text)}</Box>
-          <Text><Box as="span" fontWeight="bold">Size: </Box>{paintingInfo.width}x{paintingInfo.height}mm</Text>
-          <Text><Box as="span" fontWeight="bold">Medium: </Box>Make field</Text>
-          {/* <Content text={paintingInfo.description} /> */}
-          <StripeBuyButton paintingId={paintingInfo.id} />
+          <Text fontWeight="semibold" color="blue.700">Original paiting for sale at 'CAFE'. Prints are available online.</Text>
+          <FormLabel htmlFor="size">Size:</FormLabel>
+          <Select name="size" onChange={(e) => setSizeIndex(e.target.value)} mb="2">
+            {paintingInfo.printSizes.map((size, index) => (
+              <option key={size.id} value={index}>{size.title} ({FormatPrice(size.price, 'AUD')})</option>
+            ))}
+          </Select>
+          <FormLabel htmlFor="quantity">Quantity:</FormLabel>
+          <NumberInput name="quantity" defaultValue={1} min={1} max={10} onChange={value => setQuantity(value)} mb="2">
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+          <Text fontWeight="semibold" fontSize="2xl">{FormatPrice(paintingInfo.printSizes[sizeIndex].price * quantity, 'AUD')}</Text>
+          <Button onClick={() => addToCart(paintingInfo, sizeIndex, quantity)} rightIcon={<FaPaw />}>Add to cart</Button>
+          {/* <Text><Box as="span" fontWeight="bold">Size: </Box>{paintingInfo.width}x{paintingInfo.height}mm</Text>
+          <Text><Box as="span" fontWeight="bold">Medium: </Box>Make field</Text> */}
+
+          {/* <StripeBuyButton paintingId={paintingInfo.id} /> */}
+          <Box mt="8">{renderRichText(data.contentfulSiteConfig.paintingDescription)}</Box>
         </Box>
       </Stack>
       <Box my="16">
@@ -184,12 +210,22 @@ export const query = graphql`query SinglePaintingPage($name: String) {
     price
     width
     height
+    printSizes {
+      id: contentful_id
+      title
+      short
+      long
+      price
+    }
     images {
       id: contentful_id
       gatsbyImageData( placeholder: BLURRED, height: 500)
+      file {
+        url
+      }
     }
   }
-  allContentfulPainting(limit: 4, filter: {name: {ne: $name}}) {
+  allContentfulPainting(limit: 8, filter: {name: {ne: $name}, commission: {ne: true}}) {
     nodes{
       id: contentful_id
       name
@@ -198,6 +234,11 @@ export const query = graphql`query SinglePaintingPage($name: String) {
         id: contentful_id
         gatsbyImageData(placeholder: BLURRED)
       }
+    }
+  }
+  contentfulSiteConfig {
+    paintingDescription {
+      raw
     }
   }
 }`

@@ -3,16 +3,30 @@ const contentful = require('contentful')
 
 exports.handler = async ({ body }) =>
 {
-
-  const { id } = JSON.parse(body)
+  const items = JSON.parse(body)
 
   const client = contentful.createClient({
     space: 'rwehxiq2fto9',
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
   })
 
-  const painting = await client.getEntry(id)
-
+  const promises = items.map(async (item) =>
+  {
+    const painting = await client.getEntry(item.id)
+    return {
+      price_data: {
+        currency: 'aud',
+        product_data: {
+          name: `${painting.fields.name} - ${painting.fields.printSizes[item.sizeIndex].fields.title}`,
+          description: painting.fields.description,
+          images: ["http://" + painting.fields.images[0].fields.file.url.substring(2)]
+        },
+        unit_amount: painting.fields.printSizes[item.sizeIndex].fields.price,
+      },
+      quantity: item.quantity,
+    }
+  })
+  const line_items = await Promise.all(promises)
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -20,23 +34,10 @@ exports.handler = async ({ body }) =>
       allowed_countries: ['AU']
     },
     billing_address_collection: 'auto',
-    line_items: [
-      {
-        price_data: {
-          currency: 'aud',
-          product_data: {
-            name: painting.fields.name,
-            description: painting.fields.description,
-            images: ["http://" + painting.fields.images[0].fields.file.url.substring(2)]
-          },
-          unit_amount: painting.fields.price,
-        },
-        quantity: 1,
-      },
-    ],
+    line_items,
     mode: 'payment',
-    success_url: 'https://annie-frances-art.netlify.app/purchased',
-    cancel_url: 'https://annie-frances-art.netlify.app/paintings',
+    success_url: 'https://anniefrancesart.com/purchased',
+    cancel_url: 'https://anniefrancesart.com/paintings',
   })
 
   return {

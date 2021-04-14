@@ -38,7 +38,7 @@ function Footer()
           </Box>
         </SimpleGrid>
         <Flex flexDir={["column", "row"]} justifyContent="space-between" maxW="720px" w="full" textAlign="center">
-          <Text mb="4">Copywright © 2021 Annie Francis Art</Text>
+          <Text mb="4">© 2021 Copyright all rights reserved Annie Frances</Text>
           <Text>Website created by <Link href="https://nickworrall.co.uk" isExternal>Nick Worrall</Link></Text>
         </Flex>
       </VStack>

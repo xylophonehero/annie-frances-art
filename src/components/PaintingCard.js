@@ -24,6 +24,7 @@ function PaintingCard({ id, name, price, images, sold = "true" })
       <Link to={`/paintings/${getSlug(name)}`}>
         <VStack
           alignItems="start"
+          maxW="250px"
         >
           <Box w="250px" h="250px" overflow="hidden" pos="relative">
             <Box as={GatsbyImage} image={getImage(images[0])} alt={name} h="full" w="full" transition="all 0.5s ease" _hover={{ transform: "scale(1.2)" }} />

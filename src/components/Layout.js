@@ -6,10 +6,15 @@ import Footer from './Footer';
 import ProgressArrow from './ProgressArrow';
 import { motion, AnimatePresence } from 'framer-motion';
 import SocialButtons from './SocialButtons';
+import { graphql, StaticQuery } from 'gatsby';
+import { CartProvider } from '../context/cartContext';
 
 
 function Layout({ children, location })
 {
+  // const { data } = useStaticQuery(query)
+  // console.log(data)
+
   const duration = 0.5
 
   const variants = {
@@ -29,30 +34,80 @@ function Layout({ children, location })
       transition: { duration: duration },
     },
   }
-
-
   return (
-    <Flex direction="column" pos="relative" minH="100vh" overflowX="hidden">
-      <Header />
-      <Box flexGrow={1}>
-        <AnimatePresence>
-          <Box
-            as={motion.main}
-            key={location.pathname}
-            variants={variants}
-            initial="initial"
-            animate="enter"
-            exit="exit"
-          >
-            {children}
-          </Box>
-        </AnimatePresence>
-      </Box>
-      <Footer />
-      <SocialButtons />
-      <ProgressArrow />
-    </Flex>
-  );
+    <StaticQuery
+      query={query}
+      render={(data) => (
+        <CartProvider>
+          <Flex direction="column" pos="relative" minH="100vh">
+            <Header menuLinks={data.contentfulSiteConfig.headerMenu} />
+            <Box flexGrow={1}>
+              <AnimatePresence>
+                <Box
+                  as={motion.main}
+                  key={location.pathname}
+                  variants={variants}
+                  initial="initial"
+                  animate="enter"
+                  exit="exit"
+                >
+                  {children}
+                </Box>
+              </AnimatePresence>
+            </Box>
+            <Footer />
+            <SocialButtons facebook={data.contentfulSiteConfig.facebook} instagram={data.contentfulSiteConfig.instagram} />
+            <ProgressArrow />
+          </Flex>
+        </CartProvider>
+      )}
+    />
+  )
+
+
+  // return (
+  //   <Flex direction="column" pos="relative" minH="100vh" overflowX="hidden">
+  //     <Header />
+  //     <Box flexGrow={1}>
+  //       <AnimatePresence>
+  //         <Box
+  //           as={motion.main}
+  //           key={location.pathname}
+  //           variants={variants}
+  //           initial="initial"
+  //           animate="enter"
+  //           exit="exit"
+  //         >
+  //           {children}
+  //         </Box>
+  //       </AnimatePresence>
+  //     </Box>
+  //     <Footer />
+  //     <SocialButtons />
+  //     <ProgressArrow />
+  //   </Flex>
+  // );
 }
 
 export default Layout;
+
+const query = graphql` query LayoutQuery {
+  contentfulSiteConfig {
+    headerMenu {
+      ... on ContentfulPage {
+        id: contentful_id
+        title
+      }
+      ... on ContentfulPaintingsPage {
+        id: contentful_id
+        title
+      }
+      ... on ContentfulTestimonialsPage {
+        id: contentful_id
+        title
+      }
+    }
+    facebook
+    instagram
+  }
+}`

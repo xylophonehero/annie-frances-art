@@ -2,7 +2,6 @@ import { Box, Stack, Text, VStack } from '@chakra-ui/react';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import React from 'react';
-import Content from './Content';
 
 function TestimonialCard({ buyer, location, photo, testimonial })
 {
@@ -26,7 +25,6 @@ function TestimonialCard({ buyer, location, photo, testimonial })
       <Box as="hr" my="8" borderColor="black" />
       <Box>
         {renderRichText(testimonial)}
-        {/* <Content text={review} as="cite" /> */}
       </Box>
     </Box>
   );

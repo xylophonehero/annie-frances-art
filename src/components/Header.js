@@ -1,15 +1,23 @@
 import React from "react";
-import { Box, Flex, Text, Stack, Collapse, useDisclosure, Heading } from "@chakra-ui/react";
+import { Box, Flex, Text, Stack, Collapse, useDisclosure, Heading, Spacer } from "@chakra-ui/react";
 import { Link } from 'gatsby'
 import Cart from './Cart'
+import { getSlug } from '../utils/GetSlug'
 
 
-const NavBar = (props) =>
+
+function NavBar({ menuLinks })
 {
   const { isOpen, onToggle } = useDisclosure()
 
+  // const { data } = useStaticQuery(query)
+  // console.log(data)
+  // return (
+  //   <pre>{JSON.stringify(data, null, 2)}</pre>
+  // )
+  // const menuLinks = data.contentfulSiteConfig.headerMenu
   return (
-    <NavBarContainer {...props}>
+    <NavBarContainer>
       <Link
         to="/"
       >
@@ -17,13 +25,14 @@ const NavBar = (props) =>
           <Heading>Annie Frances Art</Heading>
         </Box>
       </Link>
-
-      <MenuToggle toggle={onToggle} isOpen={isOpen} />
-      <Box display={{ base: "none", md: "block" }}>
-        <MenuLinks />
+      <Spacer />
+      <Box display={{ base: "none", md: "inline-block" }}>
+        <MenuLinks menu={menuLinks} />
       </Box>
 
-      <MobileMenu isOpen={isOpen} />
+      <Cart />
+      <MenuToggle toggle={onToggle} isOpen={isOpen} />
+      <MobileMenu isOpen={isOpen} menu={menuLinks} />
     </NavBarContainer>
   );
 };
@@ -89,7 +98,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) =>
   );
 };
 
-const MobileMenu = ({ isOpen }) =>
+const MobileMenu = ({ isOpen, menu }) =>
 {
   return (
 
@@ -98,13 +107,13 @@ const MobileMenu = ({ isOpen }) =>
       flexBasis="100%"
     >
       <Collapse in={isOpen} animateOpacity>
-        <MenuLinks />
+        <MenuLinks menu={menu} />
       </Collapse>
     </Box>
   )
 }
 
-const MenuLinks = () =>
+const MenuLinks = ({ menu }) =>
 {
   return (
 
@@ -115,26 +124,17 @@ const MenuLinks = () =>
       direction={["column", "column", "row", "row"]}
       pt={[4, 4, 0, 0]}
     >
-      <MenuItem to="/about">About</MenuItem>
+      {menu.map(link => (
+        <MenuItem key={link.id} to={`/${getSlug(link.title)}`}>{link.title}</MenuItem>
+      ))}
+
+      {/* <MenuItem to="/about">About</MenuItem>
       <MenuItem to="/my-mission">My Mission</MenuItem>
       <MenuItem to="/faqs">FAQs</MenuItem>
       <MenuItem to="/paintings">Paitings</MenuItem>
       <MenuItem to="/testimonials">Testimonails</MenuItem>
-      <MenuItem to="/contact">Contact</MenuItem>
-      <Cart />
-      {/* <MenuItem to="/signup" isLast>
-            <Button
-              size="sm"
-              rounded="md"
-              color={["primary.500", "primary.500", "white", "white"]}
-              bg={["white", "white", "primary.500", "primary.500"]}
-              _hover={{
-                bg: ["primary.100", "primary.100", "primary.600", "primary.600"]
-              }}
-            >
-              Create Account
-            </Button>
-          </MenuItem> */}
+      <MenuItem to="/contact">Contact</MenuItem> */}
+
     </Stack>
 
   );
@@ -165,3 +165,25 @@ const NavBarContainer = ({ children, ...props }) =>
 };
 
 export default NavBar;
+
+// const query = graphql` query HeaderMenu {
+//   contentfulPage {
+//     title
+//   }
+//   contentfulSiteConfig {
+//     headerMenu {
+//       ... on ContentfulPage {
+//         id: contentful_id
+//         title
+//       }
+//       ... on ContentfulPaintingsPage {
+//         id: contentful_id
+//         title
+//       }
+//       ... on ContentfulTestimonialsPage {
+//         id: contentful_id
+//         title
+//       }
+//     }
+//   }
+// }`

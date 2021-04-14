@@ -1,9 +1,14 @@
 import React from 'react';
 import { IconButton, VStack } from '@chakra-ui/react';
-import { FaFacebookF, FaInstagram, FaPinterestP } from 'react-icons/fa';
+import { FaFacebookF, FaInstagram } from 'react-icons/fa';
 
-function SocialButtons(props)
+function SocialButtons({ facebook, instagram })
 {
+  const handleClick = (url) =>
+  {
+    window.open(url, '_blank')
+  }
+
   return (
     <VStack
       pos="fixed"
@@ -13,9 +18,9 @@ function SocialButtons(props)
       spacing="0"
       display={["none", null, "flex"]}
     >
-      <IconButton icon={<FaFacebookF />} colorScheme="facebook" rounded="none" roundedTopRight="lg" />
-      <IconButton icon={<FaInstagram />} colorScheme="pink" rounded="none" />
-      <IconButton icon={<FaPinterestP />} colorScheme="red" rounded="none" roundedBottomRight="lg" />
+      <IconButton icon={<FaFacebookF />} colorScheme="facebook" rounded="none" roundedTopRight="lg" onClick={() => handleClick(facebook)} />
+      <IconButton icon={<FaInstagram />} colorScheme="pink" rounded="none" roundedBottomRight="lg" onClick={() => handleClick(instagram)} />
+      {/* <IconButton icon={<FaPinterestP />} colorScheme="red" rounded="none" roundedBottomRight="lg" /> */}
     </VStack>
   );
 }

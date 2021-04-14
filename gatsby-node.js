@@ -9,7 +9,7 @@ exports.createPages = async ({ graphql, actions }) =>
   const paintingTemplate = path.resolve('src/templates/paintingPage.js')
   const result = await graphql(`
     query{
-      allContentfulPainting{
+      allContentfulPainting(filter:{commission: {ne: true}}){
         nodes{
           name
         }
