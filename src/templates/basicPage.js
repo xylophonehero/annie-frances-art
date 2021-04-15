@@ -19,14 +19,14 @@ function Basicpage({ data })
   return (
     <PageLayout pageTitle={pageData.title}>
       {/* <SEO /> */}
-      <Box className="content" w="full" maxW="52rem">
+      <Box className="content">
         {renderRichText(pageData.text, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: node =>
             {
               const { title, description, gatsbyImageData } = node.data.target
               return (
-                <Box maxW="32rem" mx="auto">
+                <Box maxW="32rem" mx="auto" mb="4">
                   <Box as={GatsbyImage} boxShadow="xl" image={getImage(gatsbyImageData)} alt={title} />
                   {!!description && <Text fontWeight="semibold" color="gray.700">{description}</Text>}
                 </Box>
@@ -36,7 +36,8 @@ function Basicpage({ data })
             (
               <BlockSorter block={node.data.target} />
             )
-          }
+          },
+          // renderText: text => (<Box as="span" w="full" maxW="52rem">{text}</Box>)
         })}
       </Box>
     </PageLayout>
@@ -57,23 +58,69 @@ export const query = graphql`query BasicPage($title: String) {
           contentful_id
           title
           location
-          story {
-            raw
-            references {
-              __typename
-              ... on ContentfulAsset {
-                contentful_id
-                title
-                description
-                gatsbyImageData
-              }
-            }
-          }
+          # story {
+          #   raw
+          #   references {
+          #     __typename
+          #     # ... on ContentfulAsset {
+          #     #   contentful_id
+          #     #   title
+          #     #   description
+          #     #   gatsbyImageData
+          #     # }
+          #   }
+          # }
           painting {
             gatsbyImageData
             title
           }
+          testimonial {
+            buyer
+            testimonial {
+              raw
+            }
+          }
         }
+        
+        ... on ContentfulPaintingCollection {
+          contentful_id
+          collectionName
+          text {
+            raw
+          }
+          paintings {
+            id
+            name
+            text {
+              raw
+            }
+            printSizes {
+              price
+            }
+            images {
+              gatsbyImageData
+              title
+            }
+          }
+        }
+        ... on ContentfulTestimonial {
+          contentful_id
+          buyer
+          location
+          testimonial {
+            raw
+          }
+          photo {
+            gatsbyImageData
+          }
+        }
+        # ... on ContentfulFaQs {
+        #   contentful_id
+        #   question
+        #   answer {
+        #     answer
+        #   }
+        # }
         ... on ContentfulAsset {
           contentful_id
           title
@@ -81,6 +128,10 @@ export const query = graphql`query BasicPage($title: String) {
           gatsbyImageData
         }
         ... on ContentfulPage {
+          contentful_id
+          title
+        }
+        ... on ContentfulContactForm {
           contentful_id
           title
         }

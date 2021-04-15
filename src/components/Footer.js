@@ -11,7 +11,7 @@ function Footer()
   }
 
   return (
-    <Box w="full" p="12" bgColor="blue.200">
+    <Box w="full" p="12" bgColor="green.100">
       <VStack spacing="8">
         <SimpleGrid columns={[1, 1, 3]}>
           <Box>

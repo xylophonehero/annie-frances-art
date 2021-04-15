@@ -40,7 +40,7 @@ function Layout({ children, location })
       render={(data) => (
         <CartProvider>
           <Flex direction="column" pos="relative" minH="100vh">
-            <Header menuLinks={data.contentfulSiteConfig.headerMenu} />
+            <Header logo={data.contentfulSiteConfig.logo} menuLinks={data.contentfulSiteConfig.headerMenu} />
             <Box flexGrow={1}>
               <AnimatePresence>
                 <Box
@@ -94,20 +94,13 @@ export default Layout;
 const query = graphql` query LayoutQuery {
   contentfulSiteConfig {
     headerMenu {
-      ... on ContentfulPage {
         id: contentful_id
         title
-      }
-      ... on ContentfulPaintingsPage {
-        id: contentful_id
-        title
-      }
-      ... on ContentfulTestimonialsPage {
-        id: contentful_id
-        title
-      }
     }
     facebook
     instagram
+    logo {
+      gatsbyImageData(placeholder: BLURRED)
+    }
   }
 }`

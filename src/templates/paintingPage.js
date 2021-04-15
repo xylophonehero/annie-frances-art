@@ -19,13 +19,15 @@ import
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  FormLabel
+  FormLabel,
+  Container,
+  Link,
 } from '@chakra-ui/react';
-import { graphql } from 'gatsby';
+import { graphql, Link as GatsbyLink } from 'gatsby';
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import React, { useState, useContext } from 'react';
-import PageLayout from '../components/PageLayout';
+// import PageLayout from '../components/PageLayout';
 // import Content from '../components/Content'
 import { FormatPrice } from '../utils/Format';
 // import StripeBuyButton from '../components/StripeBuyButton';
@@ -71,7 +73,7 @@ function PaintingPage({ data })
 
 
   return (
-    <PageLayout pageTitle={paintingInfo.name}>
+    <Container centerContent size="large" py={16}>
       {/* <SEO
         title={paintingInfo.name}
         image={paintingInfo.images[0].file.url}
@@ -90,10 +92,10 @@ function PaintingPage({ data })
           <Box borderBottom="1px" borderColor="gray.300" pb="4" w="full">
             <Breadcrumb spacing="8px" separator={<Box as={FaChevronRight} color="gray.500" />}>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                <BreadcrumbLink as={GatsbyLink} to="/">Home</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/paintings">Paintings</BreadcrumbLink>
+                <BreadcrumbLink as={GatsbyLink} to="/paintings">Paintings</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbItem>
                 <BreadcrumbLink href="#" isCurrentPage>{paintingInfo.name}</BreadcrumbLink>
@@ -162,7 +164,7 @@ function PaintingPage({ data })
         <Box className="content" flexShrink="1">
           <Heading>{paintingInfo.name}</Heading>
           <Box>{renderRichText(paintingInfo.text)}</Box>
-          <Text fontWeight="semibold" color="blue.700">Original paiting for sale at 'CAFE'. Prints are available online.</Text>
+          <Text fontWeight="semibold" color="blue.700">All of Annie's current works are on sale at Something For Jess Cafe, Chippendale Sydney. But you can still buy prints online.</Text>
           <FormLabel htmlFor="size">Size:</FormLabel>
           <Select name="size" onChange={(e) => setSizeIndex(e.target.value)} mb="2">
             {paintingInfo.printSizes.map((size, index) => (
@@ -183,7 +185,8 @@ function PaintingPage({ data })
           <Text><Box as="span" fontWeight="bold">Medium: </Box>Make field</Text> */}
 
           {/* <StripeBuyButton paintingId={paintingInfo.id} /> */}
-          <Box mt="8">{renderRichText(data.contentfulSiteConfig.paintingDescription)}</Box>
+          <Box my="8">{renderRichText(data.contentfulSiteConfig.paintingDescription)}</Box>
+          <Link as={GatsbyLink} to="/shipping-and-returns">Shipping and return info</Link>
         </Box>
       </Stack>
       <Box my="16">
@@ -194,7 +197,7 @@ function PaintingPage({ data })
           ))}
         </SimpleGrid>
       </Box>
-    </PageLayout>
+    </Container>
   );
 }
 
@@ -229,7 +232,10 @@ export const query = graphql`query SinglePaintingPage($name: String) {
     nodes{
       id: contentful_id
       name
-      price
+      printSizes {
+        title
+        price
+      }
       images {
         id: contentful_id
         gatsbyImageData(placeholder: BLURRED)

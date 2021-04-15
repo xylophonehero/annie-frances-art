@@ -4,20 +4,27 @@ import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import React from 'react';
 
-function CommisionBlock({ title, story, location, painting, painting2 })
+function CommisionBlock({ title, story, location, painting, testimonial })
 {
   return (
     <Box py="8" my="8" borderBottom="1px" borderColor="gray.300">
-      <Flex align="center" alignContent="center" mb="8" bg="blue.50" flexDir={["column", null, "row"]}>
+      <Flex align="center" alignContent="center" mb="8" bg="green.50" flexDir={["column", null, "row"]}>
         <Box minW={[null, "20rem"]} textAlign="center" mx="4" py="8" alignSelf="center">
           <Heading as="h2" borderBottom="1px" borderColor="gray.300" pb="4">{title}</Heading>
           <Text>{location}</Text>
         </Box>
         <Box maxH="16rem" as={GatsbyImage} image={getImage(painting)} alt={painting.title} objectFit="contain" />
-        {/* <Box maxH="8rem" as={GatsbyImage} image={getImage(painting2)} alt={painting2.title} objectFit="contain" /> */}
       </Flex>
       <Box>
-        {renderRichText(story, {
+        {!!testimonial &&
+          <Box>
+            {renderRichText(testimonial.testimonial, {
+              renderText: (text => (<Text as="em" display="inline-block">{text}</Text>))
+            })}
+            <Text fontWeight="semibold">- {testimonial.buyer}</Text>
+          </Box>
+        }
+        {!!story && renderRichText(story, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: node =>
             {
@@ -25,7 +32,6 @@ function CommisionBlock({ title, story, location, painting, painting2 })
               return (
                 <Flex justify="center" w="full" flexDir="row" mb="8">
                   <Box as={GatsbyImage} maxW="24rem" image={getImage(gatsbyImageData)} alt={title} />
-                  {/* {!!description && <Text fontWeight="semibold" color="gray.700">{description}</Text>} */}
                 </Flex>
               )
             }

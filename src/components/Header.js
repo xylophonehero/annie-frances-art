@@ -1,12 +1,13 @@
 import React from "react";
-import { Box, Flex, Text, Stack, Collapse, useDisclosure, Heading, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Text, Stack, Collapse, useDisclosure, Spacer } from "@chakra-ui/react";
 import { Link } from 'gatsby'
 import Cart from './Cart'
 import { getSlug } from '../utils/GetSlug'
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 
 
-function NavBar({ menuLinks })
+function NavBar({ logo, menuLinks })
 {
   const { isOpen, onToggle } = useDisclosure()
 
@@ -21,8 +22,11 @@ function NavBar({ menuLinks })
       <Link
         to="/"
       >
-        <Box w={["200px", "300px", "200px", "300px"]}>
-          <Heading>Annie Frances Art</Heading>
+
+        <Box pos="relative" w={["100px", "120px", "100px", "140px"]}>
+
+          <GatsbyImage image={getImage(logo)} alt="Annie Frances Art logo" objectFit="contain" />
+
         </Box>
       </Link>
       <Spacer />
@@ -154,8 +158,8 @@ const NavBarContainer = ({ children, ...props }) =>
       zIndex="2"
       // zIndex="sticky"
       // mb={8}
-      p={4}
-      bgGradient="linear(to-r, gray.200, gray.400)"
+      p={2}
+      bgGradient="linear(to-r, gray.50, gray.200)"
       color="gray.600"
       {...props}
     >

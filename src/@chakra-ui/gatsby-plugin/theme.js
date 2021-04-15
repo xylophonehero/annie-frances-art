@@ -46,7 +46,7 @@ const theme = extendTheme({
           mb: "4"
         },
         a: {
-          color: "teal.600",
+          color: "green.700",
           ":hover": {
             textDecor: "underline"
           }
