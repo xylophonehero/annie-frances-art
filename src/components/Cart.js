@@ -22,6 +22,7 @@ import
   NumberDecrementStepper,
   HStack,
   VStack,
+  Tag,
 } from "@chakra-ui/react"
 import { FaShoppingCart } from 'react-icons/fa';
 import { GrClose } from 'react-icons/gr'
@@ -35,13 +36,18 @@ function Cart(props)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
 
-  const { cartItems, changeQty, resetCart, totalPrice, checkout } = useContext(Context)
+  const { cartItems, changeQty, resetCart, totalPrice, totalItems, checkout } = useContext(Context)
 
 
 
   return (
     <>
-      <IconButton aria-label="cart" icon={<FaShoppingCart />} ref={btnRef} onClick={onOpen} size="lg" mx="4" colorScheme="gray" variant="ghost" />
+      <Box pos="relative">
+        <IconButton pos="relative" aria-label="cart" icon={<FaShoppingCart />} ref={btnRef} onClick={onOpen} size="lg" mx="4" colorScheme="gray" variant="ghost" />
+        <Flex pos="absolute" bottom="-10px" w="full" justify="center">
+          <Tag bg="transparent">{totalItems()}</Tag>
+        </Flex>
+      </Box>
       <Drawer
         isOpen={isOpen}
         placement="right"

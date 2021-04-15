@@ -20,7 +20,7 @@ function Basicpage({ data })
   return (
     <PageLayout pageTitle={pageData.title}>
       <Seo />
-      <Box className="content" maxW="100%">
+      <Box className="content" maxW="48rem" mx="auto">
         {renderRichText(pageData.text, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: node =>
@@ -35,7 +35,9 @@ function Basicpage({ data })
             },
             [BLOCKS.EMBEDDED_ENTRY]: node =>
             (
-              <BlockSorter block={node.data.target} />
+              <Box pos="relative" w="100vw" left="50%" right="50%" ml="-50vw" mr="-50vw">
+                <BlockSorter block={node.data.target} />
+              </Box>
             ),
             [INLINES.ENTRY_HYPERLINK]: node =>
             {

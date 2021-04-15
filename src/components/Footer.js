@@ -1,14 +1,26 @@
-import { Box, VStack, Text, Flex, Link, SimpleGrid, Button, InputGroup, Input, InputRightAddon } from '@chakra-ui/react';
+import
+{
+  Box,
+  VStack,
+  Text,
+  Flex,
+  Link,
+  SimpleGrid,
+  // Button,
+  // InputGroup,
+  // Input,
+  // InputRightAddon
+} from '@chakra-ui/react';
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react';
 
 function Footer()
 {
-  const onSubmit = (e) =>
-  {
-    e.preventDefault()
-    console.log("submitted")
-  }
+  // const onSubmit = (e) =>
+  // {
+  //   e.preventDefault()
+  //   console.log("submitted")
+  // }
 
   return (
     <Box w="full" p="12" bgGradient="linear(to-b, gray.100, gray.400)">
@@ -29,7 +41,7 @@ function Footer()
           </Box>
           <Box>
             <Text fontSize="lg" fontWeight="bold" mb="4">Subscribe to my newsletter:</Text>
-            <form onSubmit={onSubmit}>
+            {/* <form onSubmit={onSubmit}>
               <InputGroup>
                 <Input bg="white" placeholder="Your e-mail" />
                 <InputRightAddon>
@@ -38,7 +50,8 @@ function Footer()
                   </Button>
                 </InputRightAddon>
               </InputGroup>
-            </form>
+            </form> */}
+            Coming soon!
           </Box>
         </SimpleGrid>
         <Flex flexDir={["column", "row"]} justifyContent="space-between" maxW="720px" w="full" textAlign="center">

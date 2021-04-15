@@ -27,7 +27,7 @@ function BlockPaintingCollection({ collectionName, text, paintings })
 
           paintings = data.allContentfulPainting.nodes
           return (
-            <Box my="16">
+            <Box maxW="80rem" mx={[4, 4, "auto"]} my="16">
               <Heading textAlign="center" mb="16">{collectionName}</Heading>
               <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
                 {paintings.map((painting) => (
@@ -50,7 +50,7 @@ function BlockPaintingCollection({ collectionName, text, paintings })
   }
 
   return (
-    <Box my="16">
+    <Box maxW="80rem" mx={[4, 4, "auto"]} my="16">
       <Heading textAlign="center" my="8">{collectionName}</Heading>
       {!!text && <Box className="content" textAlign="center" mb="16">{renderRichText(text)}</Box>}
       <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>

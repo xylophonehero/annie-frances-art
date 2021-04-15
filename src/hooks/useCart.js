@@ -39,7 +39,7 @@ export default function useCart()
         ? [
           ...cartItems.map(item =>
             (item.id === product.id && item.sizeIndex === sizeIndex)
-              ? { ...item, qty: item.qty + qty }
+              ? { ...item, qty: parseInt(item.qty) + parseInt(qty) }
               : item,
           ),
         ]
@@ -73,7 +73,7 @@ export default function useCart()
   {
     return cartItems.reduce(function (total, item)
     {
-      total += item.qty
+      total += parseInt(item.qty)
       return total
     }, 0)
   }

@@ -20,8 +20,8 @@ function BlockContactForm()
       method="post"
       netlify-honeypot="bot-field"
       data-netlify="true"
-      w="full"
-      maxW="32rem"
+      maxW="48rem"
+      mx={[4, 8, null, "auto"]}
       mt="4"
       bg="gray.50"
       p="4"

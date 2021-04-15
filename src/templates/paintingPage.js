@@ -31,7 +31,7 @@ import React, { useState, useContext } from 'react';
 // import Content from '../components/Content'
 import { FormatPrice } from '../utils/Format';
 // import StripeBuyButton from '../components/StripeBuyButton';
-import { FaChevronLeft, FaChevronRight, FaFacebookF, FaPaw } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaFacebookF, FaPaw, FaPinterestP, FaTwitter } from 'react-icons/fa';
 import PaintingCard from '../components/PaintingCard';
 import PaintingModal from '../components/PaintingModal';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -161,8 +161,12 @@ function PaintingPage({ data })
             <Link isExternal href={`https://www.facebook.com/sharer/sharer.php?u=https://anniefrancesart.com/paintings/${getSlug(paintingInfo.name)}`}>
               <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
             </Link>
-            <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
-            <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
+            <Link isExternal href={`https://twitter.com/intent/tweet?url=https://anniefrancesart.com/paintings/${getSlug(paintingInfo.name)}&text=/`}>
+              <IconButton icon={<FaTwitter />} colorScheme="twitter" />
+            </Link>
+            <Link isExternal href={`https://pinterest.com/pin/create/button/?url=https://anniefrancesart.com/paintings/${getSlug(paintingInfo.name)}&media=&description=`}>
+              <IconButton icon={<FaPinterestP />} colorScheme="red" />
+            </Link>
           </HStack>
         </VStack>
         <Box className="content" flexShrink="1">

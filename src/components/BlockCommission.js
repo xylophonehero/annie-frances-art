@@ -7,7 +7,7 @@ import React from 'react';
 function CommisionBlock({ title, story, location, painting, testimonial })
 {
   return (
-    <Box py="8" my="8" borderBottom="1px" borderColor="gray.300">
+    <Box maxW="48rem" mx={["4", 8, "auto", "auto"]} py="8" my="8" borderBottom="1px" borderColor="gray.300">
       <Flex align="center" alignContent="center" mb="8" bg="green.50" flexDir={["column", null, "row"]}>
         <Box minW={[null, "20rem"]} textAlign="center" mx="4" py="8" alignSelf="center">
           <Heading as="h2" borderBottom="1px" borderColor="gray.300" pb="4">{title}</Heading>
