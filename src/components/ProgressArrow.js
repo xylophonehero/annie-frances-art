@@ -18,7 +18,7 @@ function ProgressArrow()
       h="12"
       w="12"
       borderRadius="full"
-      zIndex="overlay"
+      zIndex="docked"
       onClick={() => animateScroll.scrollToTop({ duration: "500" })}
       color="gray.500"
       p="0"

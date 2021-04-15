@@ -43,8 +43,15 @@ function Basicpage({ data })
                 <Link as={GatsbyLink} to={`/${getSlug(node.data.target.title)}`}>{node.content[0].value}</Link>
                 // <pre>{JSON.stringify(node, null, 2)}</pre>
               )
+            },
+            [INLINES.HYPERLINK]: node =>
+            {
+              return (
+                // <pre>{JSON.stringify(node, null, 2)}</pre>
+                <Link href={node.data.uri} isExternal>{node.content[0].value}</Link>
+              )
             }
-          },
+          }
           // renderText: text => (<Box as="span" w="full" maxW="52rem">{text}</Box>)
         })}
       </Box>

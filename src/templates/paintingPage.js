@@ -39,6 +39,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Seo from '../components/SEO';
 
 import CartContext from '../context/cartContext'
+import { getSlug } from '../utils/GetSlug';
 
 
 function PaintingPage({ data })
@@ -70,13 +71,14 @@ function PaintingPage({ data })
       transition: { duration: duration },
     },
   }
-
+  console.log(JSON.parse(paintingInfo.text.raw).content[0].content[0].value)
 
   return (
     <Container centerContent size="large" py={16}>
       <Seo
-        title={paintingInfo.name}
+        title={`Annie Frances Art | ${paintingInfo.name}`}
         image={paintingInfo.images[0].file.url}
+        description={JSON.parse(paintingInfo.text.raw).content[0].content[0].value}
       />
       <PaintingModal {...paintingInfo} isOpen={isOpen} onClose={onClose} index={imageIndex} />
       <Stack direction={["column", null, "row"]} spacing="8">
@@ -156,7 +158,9 @@ function PaintingPage({ data })
           </HStack>
           <HStack>
             <Text fontWeight="bold">Share:</Text>
-            <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
+            <Link isExternal href={`https://www.facebook.com/sharer/sharer.php?u=https://anniefrancesart.com/paintings/${getSlug(paintingInfo.name)}`}>
+              <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
+            </Link>
             <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
             <IconButton icon={<FaFacebookF />} colorScheme="facebook" />
           </HStack>

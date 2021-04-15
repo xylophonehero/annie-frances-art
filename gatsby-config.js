@@ -30,8 +30,21 @@ module.exports = {
         ]
       }
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Annie Frances Art`,
+        short_name: `AnnieFrancesArt`,
+        start_url: `/`,
+        background_color: `#6c6501`,
+        theme_color: `#8aadae`,
+        display: `standalone`,
+        icon: `src/images/paw.png`
+      },
+    },
     `gatsby-plugin-netlify`,
     `gatsby-plugin-gatsby-cloud`,
+    `gatsby-plugin-offline`,
     "@chakra-ui/gatsby-plugin",
     {
       resolve: `gatsby-source-contentful`,
