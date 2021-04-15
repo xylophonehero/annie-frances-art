@@ -9,7 +9,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 function NavBar({ logo, menuLinks })
 {
-  const { isOpen, onToggle } = useDisclosure()
+  const { isOpen, onToggle, onClose } = useDisclosure()
 
   // const { data } = useStaticQuery(query)
   // console.log(data)
@@ -36,7 +36,7 @@ function NavBar({ logo, menuLinks })
 
       <Cart />
       <MenuToggle toggle={onToggle} isOpen={isOpen} />
-      <MobileMenu isOpen={isOpen} menu={menuLinks} />
+      <MobileMenu isOpen={isOpen} onClose={onClose} menu={menuLinks} />
     </NavBarContainer>
   );
 };
@@ -72,16 +72,15 @@ const MenuToggle = ({ toggle, isOpen }) =>
   );
 };
 
-const MenuItem = ({ children, isLast, to = "/", ...rest }) =>
+const MenuItem = ({ children, onClose = () => { }, to = "/" }) =>
 {
   return (
-    <Box as={Link} to={to} className="navbar-link" pos="relative">
+    <Box as={Link} to={to} className="navbar-link" pos="relative" onClick={onClose}>
       <Text
         display="block"
         textTransform="uppercase"
         color="gray.700"
         fontWeight="semibold"
-        {...rest}
       >
         {children}
       </Text>
@@ -102,7 +101,7 @@ const MenuItem = ({ children, isLast, to = "/", ...rest }) =>
   );
 };
 
-const MobileMenu = ({ isOpen, menu }) =>
+const MobileMenu = ({ isOpen, menu, onClose }) =>
 {
   return (
 
@@ -111,13 +110,13 @@ const MobileMenu = ({ isOpen, menu }) =>
       flexBasis="100%"
     >
       <Collapse in={isOpen} animateOpacity>
-        <MenuLinks menu={menu} />
+        <MenuLinks menu={menu} onClose={onClose} />
       </Collapse>
     </Box>
   )
 }
 
-const MenuLinks = ({ menu }) =>
+const MenuLinks = ({ menu, onClose }) =>
 {
   return (
 
@@ -129,7 +128,7 @@ const MenuLinks = ({ menu }) =>
       pt={[4, 4, 0, 0]}
     >
       {menu.map(link => (
-        <MenuItem key={link.id} to={`/${getSlug(link.title)}`}>{link.title}</MenuItem>
+        <MenuItem key={link.id} to={`/${getSlug(link.title)}`} onClose={onClose}>{link.title}</MenuItem>
       ))}
 
       {/* <MenuItem to="/about">About</MenuItem>
@@ -159,7 +158,7 @@ const NavBarContainer = ({ children, ...props }) =>
       // zIndex="sticky"
       // mb={8}
       p={2}
-      bgGradient="linear(to-r, gray.50, gray.200)"
+      bgGradient="linear(to-r, gray.100, gray.200)"
       color="gray.600"
       {...props}
     >

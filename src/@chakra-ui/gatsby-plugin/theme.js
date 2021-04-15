@@ -27,7 +27,11 @@ const theme = extendTheme({
     },
     Link: {
       baseStyle: {
-        color: "teal.600"
+        color: "green.700",
+        fontWeight: "semibold",
+        ":focus": {
+          boxShadow: "none"
+        }
       }
     }
   },

@@ -15,7 +15,7 @@ function Layout({ children, location })
   // const { data } = useStaticQuery(query)
   // console.log(data)
 
-  const duration = 0.5
+  const duration = 0.3
 
   const variants = {
     initial: {

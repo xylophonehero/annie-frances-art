@@ -36,7 +36,7 @@ import PaintingCard from '../components/PaintingCard';
 import PaintingModal from '../components/PaintingModal';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// import SEO from '../components/SEO';
+import Seo from '../components/SEO';
 
 import CartContext from '../context/cartContext'
 
@@ -74,10 +74,10 @@ function PaintingPage({ data })
 
   return (
     <Container centerContent size="large" py={16}>
-      {/* <SEO
+      <Seo
         title={paintingInfo.name}
         image={paintingInfo.images[0].file.url}
-      /> */}
+      />
       <PaintingModal {...paintingInfo} isOpen={isOpen} onClose={onClose} index={imageIndex} />
       <Stack direction={["column", null, "row"]} spacing="8">
         <VStack
@@ -191,7 +191,7 @@ function PaintingPage({ data })
       </Stack>
       <Box my="16">
         <Heading as="h3" textAlign="left" mb="8">Related Products</Heading>
-        <SimpleGrid columns={[1, 2, null, 4]} gap="8">
+        <SimpleGrid columns={[1, 2, 3, 4]} gap="8">
           {data.allContentfulPainting.nodes.map(painting => (
             <PaintingCard key={painting.id} {...painting} noBuy />
           ))}

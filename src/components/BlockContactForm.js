@@ -14,7 +14,22 @@ import
 function BlockContactForm()
 {
   return (
-    <Box as="form" name="contact" method="POST" dataNetlify="true" w="full" maxW="32rem" mt="4" bg="gray.50" p="4" rounded="xl">
+    <Box
+      as="form"
+      name="contact"
+      method="post"
+      netlify-honeypot="bot-field"
+      data-netlify="true"
+      w="full"
+      maxW="32rem"
+      mt="4"
+      bg="gray.50"
+      p="4"
+      rounded="xl"
+      action="/contact-thanks"
+    >
+      <input type="hidden" name="bot-field" />
+      <input type="hidden" name="form-name" value="contact" />
       <VStack spacing="4" w="100%" >
         <FormControl id="name" isRequired>
           <FormLabel htmlFor="name">Name</FormLabel>

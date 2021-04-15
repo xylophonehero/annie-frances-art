@@ -1,15 +1,16 @@
 // import { Box, Heading, HStack, Stack, VStack, Text, } from '@chakra-ui/react';
-import { graphql } from 'gatsby';
+import { graphql, Link as GatsbyLink } from 'gatsby';
 
 import React from 'react';
 import PageLayout from '../components/PageLayout';
 // import Content from '../components/Content'
-import { Box, Text } from '@chakra-ui/react';
-import { BLOCKS } from "@contentful/rich-text-types"
+import { Box, Link, Text } from '@chakra-ui/react';
+import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import BlockSorter from '../components/BlockSorter';
-// import SEO from '../components/SEO'
+import { getSlug } from '../utils/GetSlug';
+import Seo from '../components/SEO'
 
 
 
@@ -18,8 +19,8 @@ function Basicpage({ data })
   const pageData = data.contentfulPage
   return (
     <PageLayout pageTitle={pageData.title}>
-      {/* <SEO /> */}
-      <Box className="content">
+      <Seo />
+      <Box className="content" maxW="100%">
         {renderRichText(pageData.text, {
           renderNode: {
             [BLOCKS.EMBEDDED_ASSET]: node =>
@@ -35,7 +36,14 @@ function Basicpage({ data })
             [BLOCKS.EMBEDDED_ENTRY]: node =>
             (
               <BlockSorter block={node.data.target} />
-            )
+            ),
+            [INLINES.ENTRY_HYPERLINK]: node =>
+            {
+              return (
+                <Link as={GatsbyLink} to={`/${getSlug(node.data.target.title)}`}>{node.content[0].value}</Link>
+                // <pre>{JSON.stringify(node, null, 2)}</pre>
+              )
+            }
           },
           // renderText: text => (<Box as="span" w="full" maxW="52rem">{text}</Box>)
         })}
@@ -81,7 +89,16 @@ export const query = graphql`query BasicPage($title: String) {
             }
           }
         }
-        
+        ... on ContentfulCta {
+          contentful_id
+          text {
+            raw
+          }
+          ctaText
+          page {
+            title
+          }
+        }
         ... on ContentfulPaintingCollection {
           contentful_id
           collectionName
@@ -114,13 +131,6 @@ export const query = graphql`query BasicPage($title: String) {
             gatsbyImageData
           }
         }
-        # ... on ContentfulFaQs {
-        #   contentful_id
-        #   question
-        #   answer {
-        #     answer
-        #   }
-        # }
         ... on ContentfulAsset {
           contentful_id
           title
@@ -134,6 +144,15 @@ export const query = graphql`query BasicPage($title: String) {
         ... on ContentfulContactForm {
           contentful_id
           title
+        }
+        ... on ContentfulHero {
+          contentful_id
+          title
+          tagline
+          backgroundImages {
+            gatsbyImageData
+            title
+          }
         }
       }
     }

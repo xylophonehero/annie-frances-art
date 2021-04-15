@@ -11,23 +11,27 @@ function Footer()
   }
 
   return (
-    <Box w="full" p="12" bgColor="green.100">
+    <Box w="full" p="12" bgGradient="linear(to-b, gray.100, gray.400)">
       <VStack spacing="8">
-        <SimpleGrid columns={[1, 1, 3]}>
+        <SimpleGrid columns={[1, 1, 3]} gap="4">
           <Box>
-            <Text fontSize="lg" fontWeight="bold" mb="4">Another menu</Text>
-            <Text><Link as={GatsbyLink} to="/">Paintings</Link></Text>
+            <Text fontSize="lg" fontWeight="bold" mb="4">Site navigation</Text>
+            <Text><Link as={GatsbyLink} to="/paintings">Paintings</Link></Text>
+            <Text><Link as={GatsbyLink} to="/about-annie">About Annie</Link></Text>
+            <Text><Link as={GatsbyLink} to="/annie's-mission">Annie's Mission</Link></Text>
+            <Text><Link as={GatsbyLink} to="/commissions">Commissions</Link></Text>
           </Box>
           <Box>
-            <Text fontSize="lg" fontWeight="bold" mb="4">Boring bits</Text>
-            <Text><Link as={GatsbyLink} to="/">Privacy Policy</Link></Text>
-            <Text><Link as={GatsbyLink} to="/">Faqs</Link></Text>
+            <Text fontSize="lg" fontWeight="bold" mb="4">Extra bits</Text>
+            <Text><Link as={GatsbyLink} to="/contact-me">Contact</Link></Text>
+            <Text><Link as={GatsbyLink} to="/shipping-and-returns">Shipping &amp; Returns</Link></Text>
+            <Text><Link as={GatsbyLink} to="/privacy-policy">Privacy Policy</Link></Text>
           </Box>
           <Box>
-            <Text fontSize="lg" fontWeight="bold" mb="4">Subscribe to my newsletter</Text>
+            <Text fontSize="lg" fontWeight="bold" mb="4">Subscribe to my newsletter:</Text>
             <form onSubmit={onSubmit}>
-              <InputGroup colorScheme="teal">
-                <Input placeholder="Your e-mail" />
+              <InputGroup>
+                <Input bg="white" placeholder="Your e-mail" />
                 <InputRightAddon>
                   <Button type="submit">
                     Go
