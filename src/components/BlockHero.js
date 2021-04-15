@@ -5,7 +5,7 @@ import React from 'react';
 function BlockHero({ title, tagline, backgroundImages })
 {
   return (
-    <Box pos="relative" maxW="68rem" mx="auto" w="100vw" h="20rem">
+    <Box pos="relative" maxW="68rem" mx="auto" w="100%" h="20rem">
       <SimpleGrid pos="absolute" w="full" h="full" columns={["1", "2", "3", "4"]}>
         {backgroundImages.map((image, index) => (
           <Box width={[index < 1 ? "auto" : "0px", index < 2 ? "auto" : "0px", index < 3 ? "auto" : "0px", index < 4 ? "auto" : "0px"]} key={image.title} as={GatsbyImage} image={getImage(image)} alt={image.title} />

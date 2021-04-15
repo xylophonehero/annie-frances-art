@@ -50,6 +50,7 @@ function Layout({ children, location })
                   initial="initial"
                   animate="enter"
                   exit="exit"
+                  overflowX="hidden"
                 >
                   {children}
                 </Box>
