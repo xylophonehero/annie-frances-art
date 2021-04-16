@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Flex, Text, Stack, Collapse, useDisclosure, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Text, Stack, Collapse, useDisclosure, Spacer, IconButton } from "@chakra-ui/react";
 import { Link } from 'gatsby'
-import Cart from './Cart'
+// import Cart from './Cart'
 import { getSlug } from '../utils/GetSlug'
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { FaShoppingCart } from "react-icons/fa";
 
 
 
@@ -33,8 +34,10 @@ function NavBar({ logo, menuLinks })
       <Box display={{ base: "none", md: "inline-block" }}>
         <MenuLinks menu={menuLinks} />
       </Box>
-
-      <Cart />
+      <Link to="/store" state={{ path: 'shoppingcart.html' }} >
+        <IconButton icon={<FaShoppingCart />} aria-label="cart" size="lg" mx="4" colorScheme="gray" variant="ghost" />
+      </Link>
+      {/* <Cart /> */}
       <MenuToggle toggle={onToggle} isOpen={isOpen} />
       <MobileMenu isOpen={isOpen} onClose={onClose} menu={menuLinks} />
     </NavBarContainer>
@@ -127,6 +130,7 @@ const MenuLinks = ({ menu, onClose }) =>
       direction={["column", "column", "row", "row"]}
       pt={[4, 4, 0, 0]}
     >
+      <MenuItem to="/store">Store</MenuItem>
       {menu.map(link => (
         <MenuItem key={link.id} to={`/${getSlug(link.title)}`} onClose={onClose}>{link.title}</MenuItem>
       ))}
