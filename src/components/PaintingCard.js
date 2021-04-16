@@ -9,7 +9,7 @@ import
 import { transparentize } from "@chakra-ui/theme-tools"
 import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 
-import { FormatPrice } from '../utils/Format'
+// import { FormatPrice } from '../utils/Format'
 import { Link } from 'gatsby';
 import { getSlug } from '../utils/GetSlug'
 // import StripeBuyButton from './StripeBuyButton';
@@ -38,7 +38,7 @@ function PaintingCard({ id, name, images, printSizes, sold })
         </Box>
 
         <Text fontSize="xl" fontWeight="semibold">{name}</Text>
-        <Text fontSize="lg" fontWeight="semibold" color="gray.700">{FormatPrice(printSizes[0].price, 'AUD')}</Text>
+        {/* <Text fontSize="lg" fontWeight="semibold" color="gray.700">{FormatPrice(printSizes[0].price, 'AUD')}</Text> */}
         {/* {!noBuy && <StripeBuyButton paintingId={id} />} */}
       </VStack>
     </Link >
