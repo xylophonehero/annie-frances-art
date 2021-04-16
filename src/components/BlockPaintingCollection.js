@@ -39,7 +39,7 @@ function BlockPaintingCollection({ collectionName, text, paintings })
               </SimpleGrid>
               <Box textAlign="center" mt="4">
 
-                <Link to="/paintings"><Button colorScheme="green">See More</Button></Link>
+                <Link to="/store"><Button colorScheme="green">See More</Button></Link>
               </Box>
             </Box>
           )

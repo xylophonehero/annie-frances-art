@@ -1,8 +1,9 @@
-import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { BLOCKS } from "@contentful/rich-text-types"
 import { renderRichText } from 'gatsby-source-contentful/rich-text';
 import React from 'react';
+import { ImQuotesLeft } from 'react-icons/im';
 
 function CommisionBlock({ title, story, location, painting, testimonial })
 {
@@ -13,15 +14,21 @@ function CommisionBlock({ title, story, location, painting, testimonial })
           <Heading as="h2" borderBottom="1px" borderColor="gray.300" pb="4">{title}</Heading>
           <Text>{location}</Text>
         </Box>
-        <Box maxH="16rem" as={GatsbyImage} image={getImage(painting)} alt={painting.title} objectFit="contain" />
+        <Box maxH="20rem" as={GatsbyImage} image={getImage(painting)} alt={painting.title} objectFit="contain" />
       </Flex>
       <Box>
         {!!testimonial &&
-          <Box>
-            {renderRichText(testimonial.testimonial, {
-              renderText: (text => (<Text as="em" display="inline-block">{text}</Text>))
-            })}
-            <Text fontWeight="semibold">- {testimonial.buyer}</Text>
+          <Box bg="gray.200" p="4" rounded="xl" mb="4" display="flex" flexDir="row">
+            <Box textColor="gray.500" fontSize="3xl" flexDir="column" justifyContent="flex-start" mt="2" mr="4" display={['none', 'flex']}>
+              <Icon as={ImQuotesLeft} />
+            </Box>
+
+            <Box>
+              {renderRichText(testimonial.testimonial, {
+                renderText: (text => (<Text as="em" display="inline-block">{text}</Text>))
+              })}
+              <Box fontWeight="semibold">- {testimonial.buyer}</Box>
+            </Box>
           </Box>
         }
         {!!story && renderRichText(story, {

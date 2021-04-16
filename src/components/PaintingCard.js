@@ -20,7 +20,10 @@ function PaintingCard({ id, name, images, printSizes, sold })
 {
 
   return (
-    <Link to={`/paintings/${getSlug(name)}`}>
+    // <Link to={`/paintings/${getSlug(name)}`}>
+    <Link to={`/store`} state={{
+      path: `featured/${getSlug(name)}-annie-frances.html`
+    }}>
       <VStack
         alignItems="start"
         maxW="250px"
@@ -38,7 +41,7 @@ function PaintingCard({ id, name, images, printSizes, sold })
         <Text fontSize="lg" fontWeight="semibold" color="gray.700">{FormatPrice(printSizes[0].price, 'AUD')}</Text>
         {/* {!noBuy && <StripeBuyButton paintingId={id} />} */}
       </VStack>
-    </Link>
+    </Link >
   );
 }
 

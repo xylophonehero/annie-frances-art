@@ -28,7 +28,7 @@ function Footer()
         <SimpleGrid columns={[1, 1, 3]} gap="4">
           <Box>
             <Text fontSize="lg" fontWeight="bold" mb="4">Site navigation</Text>
-            <Text><Link as={GatsbyLink} to="/paintings">Paintings</Link></Text>
+            <Text><Link as={GatsbyLink} to="/store">Store</Link></Text>
             <Text><Link as={GatsbyLink} to="/about-annie">About Annie</Link></Text>
             <Text><Link as={GatsbyLink} to="/annie's-mission">Annie's Mission</Link></Text>
             <Text><Link as={GatsbyLink} to="/commissions">Commissions</Link></Text>

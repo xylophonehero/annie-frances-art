@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text, Stack, Collapse, useDisclosure, Spacer, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Text, Stack, Collapse, useDisclosure, Spacer, Icon } from "@chakra-ui/react";
 import { Link } from 'gatsby'
 // import Cart from './Cart'
 import { getSlug } from '../utils/GetSlug'
@@ -34,8 +34,11 @@ function NavBar({ logo, menuLinks })
       <Box display={{ base: "none", md: "inline-block" }}>
         <MenuLinks menu={menuLinks} />
       </Box>
-      <Link to="/store" state={{ path: 'shoppingcart.html' }} >
-        <IconButton icon={<FaShoppingCart />} aria-label="cart" size="lg" mx="4" colorScheme="gray" variant="ghost" />
+      <Link to="/store" state={{ path: 'widgetshoppingcart/shoppingcart.html' }} >
+        {/* <IconButton icon={<FaShoppingCart />} aria-label="cart" size="lg" mx="4" colorScheme="gray" variant="ghost" /> */}
+        <Flex fontSize="2xl" mx="6" flexDir="column" justifyContent="center">
+          <Icon as={FaShoppingCart} />
+        </Flex>
       </Link>
       {/* <Cart /> */}
       <MenuToggle toggle={onToggle} isOpen={isOpen} />

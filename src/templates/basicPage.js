@@ -17,6 +17,7 @@ import Seo from '../components/SEO'
 function Basicpage({ data })
 {
   const pageData = data.contentfulPage
+
   return (
     <PageLayout pageTitle={pageData.title}>
       <Seo />
@@ -75,18 +76,18 @@ export const query = graphql`query BasicPage($title: String) {
           contentful_id
           title
           location
-          # story {
-          #   raw
-          #   references {
-          #     __typename
-          #     # ... on ContentfulAsset {
-          #     #   contentful_id
-          #     #   title
-          #     #   description
-          #     #   gatsbyImageData
-          #     # }
-          #   }
-          # }
+          story {
+            raw
+            # references {
+            #   __typename
+            #   # ... on ContentfulAsset {
+            #   #   contentful_id
+            #   #   title
+            #   #   description
+            #   #   gatsbyImageData
+            #   # }
+            # }
+          }
           painting {
             gatsbyImageData
             title
