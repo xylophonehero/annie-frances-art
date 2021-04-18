@@ -6,10 +6,10 @@ import
   Flex,
   Link,
   SimpleGrid,
-  // Button,
-  // InputGroup,
-  // Input,
-  // InputRightAddon
+  Button,
+  InputGroup,
+  Input,
+  InputRightAddon
 } from '@chakra-ui/react';
 import { Link as GatsbyLink } from 'gatsby'
 import React from 'react';
@@ -41,17 +41,16 @@ function Footer()
           </Box>
           <Box>
             <Text fontSize="lg" fontWeight="bold" mb="4">Subscribe to my newsletter:</Text>
-            {/* <form onSubmit={onSubmit}>
+            <form action="https://anniefrancesart.us1.list-manage.com/subscribe/post?u=8f6456baf626ffa8671669566&amp;id=1992aec1a5" method="post" target="_blank">
               <InputGroup>
-                <Input bg="white" placeholder="Your e-mail" />
+                <Input bg="white" placeholder="Your e-mail" name="EMAIL" />
                 <InputRightAddon>
                   <Button type="submit">
                     Go
                   </Button>
                 </InputRightAddon>
               </InputGroup>
-            </form> */}
-            Coming soon!
+            </form>
           </Box>
         </SimpleGrid>
         <Flex flexDir={["column", "row"]} justifyContent="space-between" maxW="720px" w="full" textAlign="center">

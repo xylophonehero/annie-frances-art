@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import SocialButtons from './SocialButtons';
 import { graphql, StaticQuery } from 'gatsby';
 import { CartProvider } from '../context/cartContext';
+import PopUpModal from './PopUpModal';
 
 
 function Layout({ children, location })
@@ -39,6 +40,7 @@ function Layout({ children, location })
       query={query}
       render={(data) => (
         <CartProvider>
+          <PopUpModal />
           <Flex direction="column" pos="relative" minH="100vh">
             <Header logo={data.contentfulSiteConfig.logo} menuLinks={data.contentfulSiteConfig.headerMenu} />
             <Box flexGrow={1}>
@@ -58,7 +60,7 @@ function Layout({ children, location })
             </Box>
             <Footer />
             <SocialButtons facebook={data.contentfulSiteConfig.facebook} instagram={data.contentfulSiteConfig.instagram} />
-            <ProgressArrow />
+            {/* <ProgressArrow /> */}
           </Flex>
         </CartProvider>
       )}

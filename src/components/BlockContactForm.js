@@ -33,7 +33,7 @@ function BlockContactForm()
       <VStack spacing="4" w="100%" >
         <FormControl id="name" isRequired>
           <FormLabel htmlFor="name">Name</FormLabel>
-          <Input name="name" required="" placeholder="Name" />
+          <Input type="text" name="name" required="" placeholder="Name" />
         </FormControl>
         <FormControl id="email" isRequired>
           <FormLabel htmlFor="email">E-mail</FormLabel>
