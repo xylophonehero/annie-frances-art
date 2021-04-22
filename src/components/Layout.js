@@ -3,7 +3,7 @@ import { Box, Flex } from '@chakra-ui/react';
 
 import Header from './Header';
 import Footer from './Footer';
-import ProgressArrow from './ProgressArrow';
+// import ProgressArrow from './ProgressArrow';
 import { motion, AnimatePresence } from 'framer-motion';
 import SocialButtons from './SocialButtons';
 import { graphql, StaticQuery } from 'gatsby';
@@ -59,7 +59,11 @@ function Layout({ children, location })
               </AnimatePresence>
             </Box>
             <Footer />
-            <SocialButtons facebook={data.contentfulSiteConfig.facebook} instagram={data.contentfulSiteConfig.instagram} />
+            <SocialButtons
+              facebook={data.contentfulSiteConfig.facebook}
+              instagram={data.contentfulSiteConfig.instagram}
+              pinterest={data.contentfulSiteConfig.pinterest}
+            />
             {/* <ProgressArrow /> */}
           </Flex>
         </CartProvider>
@@ -102,6 +106,7 @@ const query = graphql` query LayoutQuery {
     }
     facebook
     instagram
+    pinterest
     logo {
       gatsbyImageData(placeholder: BLURRED)
     }
