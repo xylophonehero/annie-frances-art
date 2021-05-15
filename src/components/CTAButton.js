@@ -20,6 +20,7 @@ function CTAButton({ text, url })
           as="span"
           display="flex"
           alignItems="center"
+          textTransform="none"
         >
           {text}
           <Icon
