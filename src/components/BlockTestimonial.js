@@ -17,8 +17,8 @@ function BlockTestimonial({ buyer, location, photo, testimonial })
       maxW="48rem"
       mx={[4, 8, null, "auto"]}
     >
-      <Stack direction={["column", "row"]} spacing={["4", "8"]}>
-        {photo && <Box as={GatsbyImage} image={getImage(photo)} w="12em" h="9em" borderRadius="lg" alt={buyer} />}
+      <Stack direction={["column", "row"]} spacing={["4", "8"]} align="center">
+        {photo && <Box as={GatsbyImage} image={getImage(photo)} w="12em" borderRadius="lg" alt={buyer} />}
         <VStack spacing="4" alignItems="flex-start" flexShrink="10000">
           <Text as="h3" fontSize="2xl" fontWeight="semibold">{buyer}</Text>
           <Text>{location}</Text>

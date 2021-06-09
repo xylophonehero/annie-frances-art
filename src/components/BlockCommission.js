@@ -9,12 +9,12 @@ function CommisionBlock({ title, story, location, painting, testimonial })
 {
   return (
     <Box maxW="48rem" mx={["4", 8, "auto", "auto"]} py="8" my="8" borderBottom="1px" borderColor="gray.300">
-      <Flex align="center" alignContent="center" mb="8" bg="green.50" flexDir={["column", null, "row"]}>
+      <Flex align="center" alignContent="center" mb="8" bg="gray.100" flexDir={["column", null, "row"]}>
         <Box minW={[null, "20rem"]} textAlign="center" mx="4" py="8" alignSelf="center">
           <Heading as="h2" borderBottom="1px" borderColor="gray.300" pb="4">{title}</Heading>
           <Text>{location}</Text>
         </Box>
-        <Box maxH="20rem" as={GatsbyImage} image={getImage(painting)} alt={painting.title} objectFit="contain" />
+        <Box as={GatsbyImage} image={getImage(painting)} alt={painting.title} />
       </Flex>
       <Box>
         {!!testimonial &&
