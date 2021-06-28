@@ -22,17 +22,17 @@ exports.createPages = async ({ graphql, actions }) =>
     }
   `)
 
-  result.data.allContentfulPainting.nodes.map(node =>
-  {
-    const slug = slugify(node.name, { lower: true })
-    createPage({
-      path: `paintings/${slug}`,
-      component: paintingTemplate,
-      context: {
-        name: node.name
-      }
-    })
-  })
+  // result.data.allContentfulPainting.nodes.map(node =>
+  // {
+  //   const slug = slugify(node.name, { lower: true })
+  //   createPage({
+  //     path: `paintings/${slug}`,
+  //     component: paintingTemplate,
+  //     context: {
+  //       name: node.name
+  //     }
+  //   })
+  // })
   result.data.allContentfulPage.nodes.map(node =>
   {
     const slug = node.title === "Home" ? "/" : slugify(node.title, { lower: true })
