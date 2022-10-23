@@ -53,6 +53,7 @@ function Footer()
             </form>
           </Box>
         </SimpleGrid>
+        <Text textAlign="center" maxW="60ch">In the spirit of reconciliation Annie Frances Art acknowledges the Traditional Custodians of country throughout Australia and their connections to land, sea and community. We pay our respect to their Elders past and present and extend that respect to all Aboriginal and Torres Strait Islander peoples today.</Text>
         <Flex flexDir={["column", "row"]} justifyContent="space-between" maxW="720px" w="full" textAlign="center">
           <Text mb="4">© 2021 Copyright all rights reserved Annie Frances</Text>
           <Text>Website created by <Link href="https://nickworrall.co.uk" isExternal>Nick Worrall</Link></Text>
