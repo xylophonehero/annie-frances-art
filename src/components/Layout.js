@@ -7,7 +7,6 @@ import Footer from './Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import SocialButtons from './SocialButtons';
 import { graphql, StaticQuery } from 'gatsby';
-import { CartProvider } from '../context/cartContext';
 import PopUpModal from './PopUpModal';
 
 
@@ -39,7 +38,8 @@ function Layout({ children, location })
     <StaticQuery
       query={query}
       render={(data) => (
-        <CartProvider>
+        // <CartProvider>
+        <>
           <PopUpModal />
           <Flex direction="column" pos="relative" minH="100vh">
             <Header logo={data.contentfulSiteConfig.logo} menuLinks={data.contentfulSiteConfig.headerMenu} />
@@ -66,7 +66,8 @@ function Layout({ children, location })
             />
             {/* <ProgressArrow /> */}
           </Flex>
-        </CartProvider>
+          </>
+        // </CartProvider>
       )}
     />
   )

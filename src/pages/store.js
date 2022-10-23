@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet'
 
 function Store({ location })
 {
-  // console.log({ location })
   return (
     <>
       <Helmet>

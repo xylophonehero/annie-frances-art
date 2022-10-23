@@ -5,6 +5,7 @@ import BlockTestimonial from './BlockTestimonial';
 import BlockContactForm from './BlockContactForm';
 import BlockHero from './BlockHero';
 import BlockCTA from './BlockCTA';
+import BlockImageText from './BlockImageText';
 
 function BlockSorter({ block })
 {
@@ -27,6 +28,9 @@ function BlockSorter({ block })
 
     case ("ContentfulCta"):
       return <BlockCTA {...block} />
+
+    case("ContentfulImageText"):
+      return <BlockImageText {...block} />
 
     default:
       return <p>Block not being rendered</p>

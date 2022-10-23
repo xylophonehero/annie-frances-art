@@ -47,7 +47,7 @@ function PopUpModal()
           <form action="https://anniefrancesart.us1.list-manage.com/subscribe/post?u=8f6456baf626ffa8671669566&amp;id=1992aec1a5" method="post" target="_blank">
             <VStack spacing="4">
               <Text>Please subscribe and be the first to know about Annie’s new artworks, freebies, promotions and more!</Text>
-              <Box w="full" pos="relative" px={[8, 16]}><StaticImage src="../images/heart-paw.jpg" alt="Heart Paw" objectFit="contain" /></Box>
+              <Box w="full" pos="relative" px={[8, 16]}><StaticImage src="../images/owlfornewsletter.jpg" alt="Owl" objectFit="contain" /></Box>
               <FormControl>
                 <FormLabel>First Name</FormLabel>
                 <Input type="text" name="FNAME" variant="filled" />

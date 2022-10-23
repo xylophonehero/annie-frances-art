@@ -7,7 +7,7 @@ function BlockTestimonial({ buyer, location, photo, testimonial })
 {
   return (
     <Box
-      bg="grey.100"
+      backgroundColor="gray.100"
       boxShadow="xl"
       h="full"
       display="flex"
@@ -16,6 +16,7 @@ function BlockTestimonial({ buyer, location, photo, testimonial })
       borderRadius="xl"
       maxW="48rem"
       mx={[4, 8, null, "auto"]}
+      mb={8}
     >
       <Stack direction={["column", "row"]} spacing={["4", "8"]} align="center">
         {photo && <Box as={GatsbyImage} image={getImage(photo)} w="12em" borderRadius="lg" alt={buyer} />}

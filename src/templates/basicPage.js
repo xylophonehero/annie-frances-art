@@ -109,27 +109,27 @@ export const query = graphql`query BasicPage($title: String) {
             title
           }
         }
-        ... on ContentfulPaintingCollection {
-          contentful_id
-          collectionName
-          text {
-            raw
-          }
-          paintings {
-            id
-            name
-            text {
-              raw
-            }
-            printSizes {
-              price
-            }
-            images {
-              gatsbyImageData
-              title
-            }
-          }
-        }
+        # ... on ContentfulPaintingCollection {
+        #   contentful_id
+        #   collectionName
+        #   text {
+        #     raw
+        #   }
+        #   paintings {
+        #     id
+        #     name
+        #     text {
+        #       raw
+        #     }
+        #     printSizes {
+        #       price
+        #     }
+        #     images {
+        #       gatsbyImageData
+        #       title
+        #     }
+        #   }
+        # }
         ... on ContentfulTestimonial {
           contentful_id
           buyer
@@ -155,13 +155,30 @@ export const query = graphql`query BasicPage($title: String) {
           contentful_id
           title
         }
-        ... on ContentfulHero {
+        # ... on ContentfulHero {
+        #   contentful_id
+        #   title
+        #   tagline
+        #   backgroundImages {
+        #     gatsbyImageData
+        #     title
+        #   }
+        # }
+        ... on ContentfulImageText {
           contentful_id
-          title
-          tagline
-          backgroundImages {
+          text {
+            raw
+          }
+          image {
             gatsbyImageData
-            title
+            description
+          }
+          imageOnLeft
+          ctaText
+          ctaLink {
+            ...on ContentfulPage {
+              title
+            }
           }
         }
       }
